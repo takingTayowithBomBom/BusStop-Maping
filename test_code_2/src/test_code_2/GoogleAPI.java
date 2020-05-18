@@ -14,8 +14,9 @@ public class GoogleAPI {
 	
 	public void downloadMap(String location) {
 		try {
-			String imageURL = "https://maps.googleapis.com/maps/api/staticmap?center=" // add google cloud key
-								+ URLEncoder.encode(location, "UTF-8") + "&zoom=11&size=612x612&scale=2";
+			//String imageURL = "https://maps.googleapis.com/maps/api/staticmap?center=" // add google cloud key
+			//				+ URLEncoder.encode(location, "UTF-8") + "&zoom=11&size=612x612&scale=2";
+			String imageURL = "https://map.kakao.com/link/map/18577297";		
 			URL url = new URL(imageURL);
 			InputStream is = url.openStream();
 			OutputStream os = new FileOutputStream(location);
