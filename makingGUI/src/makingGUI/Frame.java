@@ -1,7 +1,6 @@
 package makingGUI;
 
 import java.awt.Container;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,8 +11,8 @@ public class Frame extends JFrame {
 	Container cPane;
 	ImageIcon img;
 	JLabel Imgbox;
-	final int FRAME_WIDTH = 1000;
-	final int FRAME_HEIGHT = 1000;
+	final int FRAME_WIDTH = 720;
+	final int FRAME_HEIGHT = 856;
 	
 	//JButton btn1 = new JButton("Á¦´ë");
 	
@@ -27,9 +26,9 @@ public class Frame extends JFrame {
 		cPane = getContentPane();
 		cPane.setLayout(null);
 		
-		img = new ImageIcon(".\\img\\jejuMap.jpg");
+		img = new ImageIcon("./img/jejuMap.jpg");
 		Imgbox = new JLabel(img);
-		Imgbox.setBounds(0, 50, img.getIconWidth(), img.getIconHeight());
+		Imgbox.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 		
 		cPane.add(Imgbox);
 	}
