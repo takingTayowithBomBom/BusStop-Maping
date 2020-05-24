@@ -3,8 +3,8 @@
 <h2>Jeju-university bus stop visualization project</h2>
 <hr>
 <h3>commit member </h3>
-<li>Younwoo Roh!</li>
-<li>Gayeong Kim!</li>
+<li>Younwoo Roh</li>
+<li>Gayeong Kim</li>
 <h3>used API</h4>
 <li>google Map API</li>
 <hr>
