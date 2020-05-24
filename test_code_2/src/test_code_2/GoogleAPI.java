@@ -14,9 +14,9 @@ public class GoogleAPI {
 	
 	public void downloadMap(String location) {
 		try {
-			//String imageURL = "https://maps.googleapis.com/maps/api/staticmap?center=" // add google cloud key
-			//				+ URLEncoder.encode(location, "UTF-8") + "&zoom=11&size=612x612&scale=2";
-			String imageURL = "https://map.kakao.com/link/map/18577297";		
+			//String imageURL = "https://maps.googleapis.com/maps/api/staticmap?center="
+			//				+ URLEncoder.encode(location, "UTF-8") + "&zoom=11&size=612x612&scale=2&key=AIzaSyDKH_oO4T_L-bD3172qdi0mmmHV_ez1orY";
+			String imageURL = "https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=612x612&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDKH_oO4T_L-bD3172qdi0mmmHV_ez1orY";
 			URL url = new URL(imageURL);
 			InputStream is = url.openStream();
 			OutputStream os = new FileOutputStream(location);
