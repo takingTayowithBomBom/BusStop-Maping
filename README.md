@@ -9,6 +9,6 @@
 <li>google Map API</li>
 <hr>
 <h3>Project preview</h3>
-<img src="./makingGUI/project_preview.png" alt="project preview image">
+<img src="./makingGUI/img/project_preview.png" alt="project preview image">
 
 
