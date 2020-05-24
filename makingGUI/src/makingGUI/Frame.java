@@ -12,17 +12,16 @@ public class Frame extends JFrame {
 	Container cPane;
 	ImageIcon img;
 	JLabel Imgbox;
-	Frame frame = new Frame();
-	final int FRAME_WIDTH = img.getIconWidth();
-	final int FRAME_HEIGHT = img.getIconHeight();
+	final int FRAME_WIDTH = 1000;
+	final int FRAME_HEIGHT = 1000;
 	
 	//JButton btn1 = new JButton("Á¦´ë");
 	
 	public Frame() {
-		frame.setTitle("takingTayoWithBomBom");
-		frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		setTitle("takingTayoWithBomBom");
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 		//		super("takingTayoWithBomBom");
 		
 		cPane = getContentPane();
