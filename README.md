@@ -7,6 +7,8 @@
 <li>Gayeong Kim!</li>
 <h3>used API</h4>
 <li>google Map API</li>
-
+<hr>
+<h3>Project preview</h3>
+<img src="./makingGUI/project_preview.png" alt="project preview image">
 
 
