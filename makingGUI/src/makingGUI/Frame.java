@@ -3,12 +3,8 @@ package makingGUI;
 import javax.swing.*;
 import java.awt.*;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
-
 public class Frame extends JFrame {
-	
+	Mypanel panel = new Mypanel();
 	Container cPane;
 	ImageIcon img;
 	JLabel Imgbox;
@@ -22,20 +18,12 @@ public class Frame extends JFrame {
 			{300,550},{200,550},{140,650},{110,550},{250,470},
 			{350,340},{423,280},{300,260}
 	};
-	int [][] pathStart = {
-			{320, 125}
-	};
-	int [][] pathEnd = {
-			{380, 250}
-	};
-	
 	public Frame() {
 		setTitle("takingTayoWithBomBom");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//		super("takingTayoWithBomBom");
-		
 		cPane = getContentPane();
+		cPane.add(panel);
 		cPane.setLayout(null);
 		
 		img = new ImageIcon("./img/jejuMap.jpg");
@@ -53,17 +41,22 @@ public class Frame extends JFrame {
 		}
 		setVisible(true);
 	}
-	class MyPanel extends JPanel{
-		public void paintLine(Graphics g) {
-			super.paintComponents(g);
+	public static void main(String[] args) {
+		new Frame();
+	}
+	class Mypanel extends JPanel{
+		int [][] pathStart = {
+				{320, 125}
+		};
+		int [][] pathEnd = {
+				{380, 250}
+		};
+		public void paint(Graphics g) {
+			super.paint(g);
 			g.setColor(Color.RED);
-			for(int i = 0; i < 13; i++) {
+			for(int i = 0; i < 1; i++) {
 				g.drawLine(pathStart[i][0], pathStart[i][1], pathEnd[i][0], pathEnd[i][1]);
 			}
 		}
 	}
-	public static void main(String[] args) {
-		new Frame();
-	}
-
 }
