@@ -3,7 +3,7 @@ package makingGUI;
 import javax.swing.*;
 import java.awt.*;
 
-public class Frame extends JFrame {
+public class TestFrame extends JFrame {
 	Mypanel panel = new Mypanel();
 	Container cPane;
 	ImageIcon img;
@@ -18,12 +18,13 @@ public class Frame extends JFrame {
 			{300,550},{200,550},{140,650},{110,550},{250,470},
 			{350,340},{423,280},{300,260}
 	};
-	public Frame() {
-		setTitle("takingTayoWithBomBom");
+	public TestFrame() {
+		setTitle("TayoWithBomBom");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cPane = getContentPane();
 		cPane.setLayout(null);
+		
 		
 		img = new ImageIcon("./img/jejuMap.jpg");
 		Imgbox = new JLabel(img);
@@ -43,7 +44,9 @@ public class Frame extends JFrame {
 		cPane.add(panel);
 		setVisible(true);
 	}
-
+	public static void main(String[] args) {
+		new Frame();
+	}
 	class Mypanel extends JPanel{
 		int [][] pathStart = {
 				{320, 125}, {336, 252}, {368, 303}, {410, 302}, {453, 329}, {443, 387}, {337, 396}, {420, 493}, {247, 523},
