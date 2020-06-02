@@ -1,11 +1,11 @@
 package makingGUI;
 
+import javax.swing.*;
+import java.awt.*;
+
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class Frame extends JFrame {
 	
@@ -29,8 +29,6 @@ public class Frame extends JFrame {
 			{380, 250}
 	};
 	
-	//JButton btn1 = new JButton("Á¦´ë");
-	
 	public Frame() {
 		setTitle("takingTayoWithBomBom");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -44,7 +42,6 @@ public class Frame extends JFrame {
 		Imgbox = new JLabel(img);
 		Imgbox.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 		cPane.add(Imgbox, 1, 0);
-		
 		MarkerImg = new ImageIcon("./img/C_busStop.png");
 		for(int i = 0; i < 13; i++) {
 			Markers[i] = new MarkerButton();
@@ -54,17 +51,19 @@ public class Frame extends JFrame {
 			Markers[i].addMouseListener(new MarkerClickEvent());
 			cPane.add(Markers[i], i+2, 0);
 		}
-		public void paintline(Graphics g) {
-			super.paintComponents(g);
-			g.setColor(Color.RED);
-			g.drawLine(pathStart[i][0], pathStart[i][1], pathEnd[i][0], pathEnd[i][1]);
-		}
 		setVisible(true);
 	}
-
+	class MyPanel extends JPanel{
+		public void paintLine(Graphics g) {
+			super.paintComponents(g);
+			g.setColor(Color.RED);
+			for(int i = 0; i < 13; i++) {
+				g.drawLine(pathStart[i][0], pathStart[i][1], pathEnd[i][0], pathEnd[i][1]);
+			}
+		}
+	}
 	public static void main(String[] args) {
 		new Frame();
-
 	}
 
 }

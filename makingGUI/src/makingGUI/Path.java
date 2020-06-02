@@ -1,10 +1,8 @@
 package makingGUI;
 
-public class Path {
+import java.awt.*;
+import javax.swing.*;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+public class Path extends JFrame{
 
 }
