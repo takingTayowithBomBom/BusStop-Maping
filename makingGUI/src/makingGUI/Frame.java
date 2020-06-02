@@ -37,6 +37,7 @@ public class Frame extends JFrame {
 			Markers[i].setNum(i);
 			Markers[i].setBounds(busLocation[i][0], busLocation[i][1], MarkerImg.getIconWidth(), MarkerImg.getIconHeight());
 			Markers[i].addMouseListener(new MarkerClickEvent());
+			Markers[i].setBorderPainted(false); 
 			cPane.add(Markers[i], i+2, 0);
 		}
 		setVisible(true);
@@ -46,10 +47,14 @@ public class Frame extends JFrame {
 	}
 	class Mypanel extends JPanel{
 		int [][] pathStart = {
-				{320, 125}
+				{320, 125}, {336, 252}, {368, 303}, {410, 302}, {453, 329}, {443, 387}, {337, 396}, {420, 493}, {247, 523},
+				{181, 522}, {127, 554}, {132, 648}, {146, 701}, {220, 696}, {220, 608}, {238, 598}, {338, 598}, {431, 599},
+				{515, 587}, {514, 514}, {524, 454}, {610, 449}, {451, 407}, {439, 301},{382, 303}, {337, 286}, {336, 200}
 		};
 		int [][] pathEnd = {
-				{380, 250}
+				{380, 250}, {250, 375}, {396, 304}, {449, 302}, {453, 381}, {387, 387}, {337, 477}, {276, 514}, {192, 523},
+				{141, 523}, {130, 623}, {136, 693}, {170, 701}, {221, 646}, {221, 609}, {299, 597}, {416, 595}, {501, 598},
+				{515, 535}, {514, 452}, {610, 449}, {529, 449}, {453, 328}, {395, 302}, {343, 302}, {338, 206}, {333, 164}
 		};
 		public void paint(Graphics g) {
 			super.paint(g);
