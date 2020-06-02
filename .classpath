@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="BusStop-Maping/makingGUI/src"/>
+	<classpathentry kind="src" path="BusStop-Maping/test_code_2/src"/>
+	<classpathentry kind="src" path="makingGUI/src"/>
+	<classpathentry kind="src" path="test_code_2/src"/>
+	<classpathentry kind="output" path="BusStop-Maping/makingGUI/bin"/>
+</classpath>
