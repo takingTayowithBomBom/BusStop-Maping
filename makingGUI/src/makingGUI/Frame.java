@@ -1,11 +1,18 @@
 package makingGUI;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Frame extends JFrame {
 	Mypanel panel = new Mypanel();
-	Container cPane;
+	//Container cPane;
 	ImageIcon img;
 	JLabel Imgbox;
 	final int FRAME_WIDTH = 720;
@@ -22,13 +29,14 @@ public class Frame extends JFrame {
 		setTitle("takingTayoWithBomBom");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		cPane = getContentPane();
-		cPane.setLayout(null);
+		setContentPane(panel);
+		panel.setLayout(null);
+		
 		
 		img = new ImageIcon("./img/jejuMap.jpg");
 		Imgbox = new JLabel(img);
 		Imgbox.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
-		cPane.add(Imgbox, 1, 0);
+		panel.add(Imgbox, 1, 0);
 		MarkerImg = new ImageIcon("./img/C_busStop.png");
 		for(int i = 0; i < 13; i++) {
 			Markers[i] = new MarkerButton();
@@ -37,14 +45,14 @@ public class Frame extends JFrame {
 			Markers[i].setBounds(busLocation[i][0], busLocation[i][1], MarkerImg.getIconWidth(), MarkerImg.getIconHeight());
 			Markers[i].addMouseListener(new MarkerClickEvent());
 			Markers[i].setBorderPainted(false); 
-			cPane.add(Markers[i], i+2, 0);
+			panel.add(Markers[i], i+2, 0);
 		}
 		
-		cPane.add(panel);
 		setVisible(true);
 	}
 
 	class Mypanel extends JPanel{
+		float dash3[] = {10,3f};
 		int [][] pathStart = {
 				{320, 125}, {336, 252}, {368, 303}, {410, 302}, {453, 329}, {443, 387}, {337, 396}, {420, 493}, {247, 523},
 				{181, 522}, {127, 554}, {132, 648}, {146, 701}, {220, 696}, {220, 608}, {238, 598}, {338, 598}, {431, 599},
@@ -57,8 +65,10 @@ public class Frame extends JFrame {
 		};
 		public void paint(Graphics g) {
 			super.paint(g);
-			g.setColor(Color.RED);
-			for(int i = 0; i < 1; i++) {
+			g.setColor(new Color(255, 30, 30, 70));
+			for(int i = 0; i < 27; i++) {
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setStroke(new BasicStroke(15, BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL,1,dash3,0));
 				g.drawLine(pathStart[i][0], pathStart[i][1], pathEnd[i][0], pathEnd[i][1]);
 			}
 		}
