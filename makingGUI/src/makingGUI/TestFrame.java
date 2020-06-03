@@ -22,7 +22,10 @@ public class TestFrame extends JFrame {
 	ImageIcon MarkerImg;
 	MarkerButton [] Markers = new MarkerButton[13];
 	ImageIcon img2 = new ImageIcon("./img/reverseclockwise2.png");
-	RoundButton RB = new RoundButton("A노선", img2);
+	RoundButton RB1 = new RoundButton("A노선", img2);
+	ImageIcon img3 = new ImageIcon("./img/clockwise2.png");
+	RoundButton RB2 = new RoundButton("B노선", img3);
+	
 	
 	int [][] busLocation = {
 			{320,125},{450,375},{600,400},{500,410},{500,550},
@@ -52,10 +55,14 @@ public class TestFrame extends JFrame {
 			panel.add(Markers[i], i+2, 0);
 		}
 		
-		RB.setBounds(600, 90, 100, 30);
-		RB.setBorderPainted(false);
-		RB.addMouseListener(new MyButtonClickEvent());
-		panel.add(RB, 15, 0);
+		RB1.setBounds(600, 90, 100, 30);
+		RB1.setBorderPainted(false);
+		RB1.addMouseListener(new MyButtonClickEvent());
+		RB2.setBounds(600, 124, 100, 30);
+		RB2.setBorderPainted(false);
+		RB2.addMouseListener(new MyButtonClickEvent());
+		panel.add(RB1, 15, 0);
+		panel.add(RB2, 15, 0);
 		
 		setVisible(true);
 	}
@@ -63,21 +70,23 @@ public class TestFrame extends JFrame {
 	class Mypanel extends JPanel{
 		float dash3[] = {10,3f};
 		int [][] pathStart = {
-				{320, 125}, {336, 252}, {368, 303}, {410, 302}, {453, 329}, {443, 387}, {337, 396}, {420, 493}, {247, 523},
-				{181, 522}, {127, 554}, {132, 648}, {146, 701}, {220, 696}, {220, 608}, {238, 598}, {338, 598}, {431, 599},
-				{515, 587}, {514, 514}, {524, 454}, {610, 449}, {451, 407}, {439, 301},{382, 303}, {337, 286}, {336, 200}
+				{335, 125}, {352, 303}, {451, 335}, {446, 386},
+				{337, 390}, {330, 488}, {240, 524}, {137, 527},
+				{129, 603}, {142, 702}, {218, 698}, {230, 598}, 
+				{242, 598}, {515, 569}, {552, 450}, {502, 442}
 		};
 		int [][] pathEnd = {
-				{380, 250}, {250, 375}, {396, 304}, {449, 302}, {453, 381}, {387, 387}, {337, 477}, {276, 514}, {192, 523},
-				{141, 523}, {130, 623}, {136, 693}, {170, 701}, {221, 646}, {221, 609}, {299, 597}, {416, 595}, {501, 598},
-				{515, 535}, {514, 452}, {610, 449}, {529, 449}, {453, 328}, {395, 302}, {343, 302}, {338, 206}, {333, 164}
+				{335, 260}, {434, 302}, {455, 372}, {347, 386},
+				{335, 482}, {247, 525}, {140, 521}, {127, 544},
+				{134, 696}, {220, 700}, {220, 598}, {298, 598},
+				{498, 598}, {511, 460}, {626, 450}, {476, 422}
 		};
 		public void paint(Graphics g) {
 			super.paint(g);
 			g.setColor(new Color(255, 30, 30, 70));
-			for(int i = 0; i < 27; i++) {
+			for(int i = 0; i < 16; i++) {
 				Graphics2D g2 = (Graphics2D) g;
-				g2.setStroke(new BasicStroke(15, BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL,1,dash3,0));
+				g2.setStroke(new BasicStroke(9, BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL,1,dash3,0));
 				g.drawLine(pathStart[i][0], pathStart[i][1], pathEnd[i][0], pathEnd[i][1]);
 			}
 		}

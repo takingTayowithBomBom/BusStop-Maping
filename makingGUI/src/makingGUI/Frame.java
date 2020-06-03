@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class Frame extends JFrame {
 	Mypanel panel = new Mypanel();
@@ -20,13 +21,19 @@ public class Frame extends JFrame {
 	
 	ImageIcon MarkerImg;
 	MarkerButton [] Markers = new MarkerButton[13];
+	ImageIcon img2 = new ImageIcon("./img/reverseclockwise2.png");
+	RoundButton RB1 = new RoundButton("A노선", img2);
+	ImageIcon img3 = new ImageIcon("./img/clockwise2.png");
+	RoundButton RB2 = new RoundButton("B노선", img3);
+	
+	
 	int [][] busLocation = {
 			{320,125},{450,375},{600,400},{500,410},{500,550},
 			{300,550},{200,550},{140,650},{110,550},{250,470},
 			{350,340},{423,280},{300,260}
 	};
 	public Frame() {
-		setTitle("takingTayoWithBomBom");
+		setTitle("TayoWithBomBom");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setContentPane(panel);
@@ -47,6 +54,15 @@ public class Frame extends JFrame {
 			Markers[i].setBorderPainted(false); 
 			panel.add(Markers[i], i+2, 0);
 		}
+		
+		RB1.setBounds(600, 90, 100, 30);
+		RB1.setBorderPainted(false);
+		RB1.addMouseListener(new MyButtonClickEvent());
+		RB2.setBounds(600, 124, 100, 30);
+		RB2.setBorderPainted(false);
+		RB2.addMouseListener(new MyButtonClickEvent());
+		panel.add(RB1, 15, 0);
+		panel.add(RB2, 15, 0);
 		
 		setVisible(true);
 	}
