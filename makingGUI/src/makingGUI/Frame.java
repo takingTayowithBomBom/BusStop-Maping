@@ -28,6 +28,7 @@ public class Frame extends JFrame {
 	RoundButton RB1 = new RoundButton("A노선", img2);
 	ImageIcon img3 = new ImageIcon("./img/clockwise2.png");
 	RoundButton RB2 = new RoundButton("B노선", img3);
+	TimeManage jmt = new TimeManage();
 	
 	int [][] resetStart = {
 			{335, 125}, {352, 303}, {451, 335}, {446, 386},
