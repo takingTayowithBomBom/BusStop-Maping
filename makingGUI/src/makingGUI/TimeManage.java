@@ -12,7 +12,4 @@ public class TimeManage {
 		int second = time.get(Calendar.SECOND);
 		System.out.println(hour+"Ω√"+minute+"∫–"+second+"√ ");
 	}
-	public static void main(String[]args) {
-		new TimeManage();
-	}
 }
