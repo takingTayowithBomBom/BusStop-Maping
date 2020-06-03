@@ -18,6 +18,7 @@ public class Frame extends JFrame {
 	//Container cPane;
 	ImageIcon img;
 	JLabel Imgbox;
+	JLabel TimePanel;
 	final int FRAME_WIDTH = 720;
 	final int FRAME_HEIGHT = 856;
 	int pathNum = 0;
