@@ -156,11 +156,20 @@ public class TestFrame extends JFrame {
 					break;
 				}
 			}
-			k = k / 24;
-			System.out.println(k);
-			ABus.setBorderPainted(false);
-			ABus.setBounds(busLocation[k][0], busLocation[k][1], 30, 30);
-			panel.add(ABus, 17, 0);
+			if(k == 24*11+23) {
+				ABus.setBorderPainted(false);
+				ABus.setBounds(0, 0, 30, 30);
+				panel.add(ABus, 17, 0);
+			}
+			else {
+				k = k / 24;
+				//System.out.println(k);
+				ABus.setBorderPainted(false);
+				ABus.setBounds(busLocation[k][0], busLocation[k][1], 30, 30);
+				panel.add(ABus, 17, 0);
+			}
+			//System.out.println(k);
+			
 			
 		}
 	}

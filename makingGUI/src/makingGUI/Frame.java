@@ -144,19 +144,32 @@ public class Frame extends JFrame {
 	        }catch(IOException e2){
 	            System.out.println(e2);
 	        }
-			//System.out.println(database2[1][1]);
+			
 			int k = 0;
 			int curtime = new TimeManage().getTimeInt();
 			
-			for(k = 1; k < 24*12+24; k++) {
+			for(k = 1; k < 24*11+23; k++) {
+				//System.out.println(database2[k][1] + Integer.toString(curtime));
+				if(k%24 == 0 )
+					continue;
 				if( Integer.parseInt(database2[k][1]) == curtime) {
 					break;
 				}
 			}
-			k /= 24;
-			ABus.setBorderPainted(false);
-			ABus.setBounds(busLocation[k][0], busLocation[k][1], 30, 30);
-			panel.add(ABus, 17, 0);
+			if(k == 24*11+23) {
+				ABus.setBorderPainted(false);
+				ABus.setBounds(0, 0, 30, 30);
+				panel.add(ABus, 17, 0);
+			}
+			else {
+				k = k / 24;
+				//System.out.println(k);
+				ABus.setBorderPainted(false);
+				ABus.setBounds(busLocation[k][0], busLocation[k][1], 30, 30);
+				panel.add(ABus, 17, 0);
+			}
+			//System.out.println(k);
+			
 			
 		}
 	}
