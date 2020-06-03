@@ -92,6 +92,13 @@ public class Frame extends JFrame {
 		panel.add(RB1, 15, 0);
 		panel.add(RB2, 15, 0);
 		
+		TimeManage now = new TimeManage();
+		TimePanel = new JLabel(now.getTime());
+		TimePanel.setOpaque(true);
+		TimePanel.setBackground(Color.YELLOW);
+		TimePanel.setForeground(Color.BLACK);
+		panel.add(TimePanel);
+		
 		setVisible(true);
 	}
 
