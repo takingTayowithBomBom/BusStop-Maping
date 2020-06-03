@@ -4,6 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,6 +20,7 @@ public class TestFrame extends JFrame {
 	JLabel Imgbox;
 	final int FRAME_WIDTH = 720;
 	final int FRAME_HEIGHT = 856;
+	int pathNum = 0;
 	
 	ImageIcon MarkerImg;
 	MarkerButton [] Markers = new MarkerButton[13];
@@ -26,6 +29,30 @@ public class TestFrame extends JFrame {
 	ImageIcon img3 = new ImageIcon("./img/clockwise2.png");
 	RoundButton RB2 = new RoundButton("B노선", img3);
 	
+	int [][] resetStart = {
+			{335, 125}, {352, 303}, {451, 335}, {446, 386},
+			{337, 390}, {330, 488}, {240, 524}, {137, 527},
+			{129, 603}, {142, 702}, {218, 698}, {230, 598}, 
+			{242, 598}, {515, 569}, {552, 450}, {502, 442}
+	};
+	int [][] resetEnd = {
+			{335, 260}, {434, 302}, {455, 372}, {347, 386},
+			{335, 482}, {247, 525}, {140, 521}, {127, 544},
+			{134, 696}, {220, 700}, {220, 598}, {298, 598},
+			{498, 598}, {511, 460}, {626, 450}, {476, 422}
+	};
+	int [][] pathStart = {
+			{0,0}, {0,0}, {0,0}, {0,0},
+			{0,0}, {0,0}, {0,0}, {0,0},
+			{0,0}, {0,0}, {0,0}, {0,0}, 
+			{0,0}, {0,0}, {0,0}, {0,0}
+	};
+	int [][] pathEnd = {
+			{0,0}, {0,0}, {0,0}, {0,0},
+			{0,0}, {0,0}, {0,0}, {0,0},
+			{0,0}, {0,0}, {0,0}, {0,0}, 
+			{0,0}, {0,0}, {0,0}, {0,0}
+	};
 	
 	int [][] busLocation = {
 			{320,125},{450,375},{600,400},{500,410},{500,550},
@@ -69,26 +96,83 @@ public class TestFrame extends JFrame {
 
 	class Mypanel extends JPanel{
 		float dash3[] = {10,3f};
-		int [][] pathStart = {
-				{335, 125}, {352, 303}, {451, 335}, {446, 386},
-				{337, 390}, {330, 488}, {240, 524}, {137, 527},
-				{129, 603}, {142, 702}, {218, 698}, {230, 598}, 
-				{242, 598}, {515, 569}, {552, 450}, {502, 442}
-		};
-		int [][] pathEnd = {
-				{335, 260}, {434, 302}, {455, 372}, {347, 386},
-				{335, 482}, {247, 525}, {140, 521}, {127, 544},
-				{134, 696}, {220, 700}, {220, 598}, {298, 598},
-				{498, 598}, {511, 460}, {626, 450}, {476, 422}
-		};
+		
 		public void paint(Graphics g) {
 			super.paint(g);
-			g.setColor(new Color(255, 30, 30, 70));
+			if(pathNum == 0)
+				g.setColor(new Color(255, 30, 30, 70));
+			else
+				g.setColor(new Color(30, 30, 255, 70));
 			for(int i = 0; i < 16; i++) {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setStroke(new BasicStroke(9, BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL,1,dash3,0));
 				g.drawLine(pathStart[i][0], pathStart[i][1], pathEnd[i][0], pathEnd[i][1]);
 			}
 		}
+	}
+	
+	public class MyButtonClickEvent implements MouseListener{
+		@Override
+	    public void mouseClicked(MouseEvent e) {
+			RoundButton button = (RoundButton)e.getSource();
+			if(button.getText().equals("A노선")) {
+				if(button.bool == 0) {
+					for(int i = 0; i < 16; i++) {
+						pathStart[i][0] = 0;
+						pathStart[i][1] = 0;
+						pathEnd[i][0] = 0;
+						pathEnd[i][1] = 0;
+					}
+					panel.repaint();
+					button.bool = 1;
+				}
+				else {
+					for(int i = 0; i < 16; i++) {
+						pathStart[i][0] = resetStart[i][0];
+						pathStart[i][1] = resetStart[i][1];
+						pathEnd[i][0] = resetEnd[i][0];
+						pathEnd[i][1] = resetEnd[i][1];
+					}
+					panel.repaint();
+					button.bool = 0;
+				}
+				pathNum = 0;
+			}
+			else if(button.getText().equals("B노선")) {
+				if(button.bool == 0) {
+					for(int i = 0; i < 16; i++) {
+						pathStart[i][0] = 0;
+						pathStart[i][1] = 0;
+						pathEnd[i][0] = 0;
+						pathEnd[i][1] = 0;
+					}
+					panel.repaint();
+					button.bool = 1;
+				}
+				else {
+					for(int i = 0; i < 16; i++) {
+						pathStart[i][0] = resetStart[i][0];
+						pathStart[i][1] = resetStart[i][1];
+						pathEnd[i][0] = resetEnd[i][0];
+						pathEnd[i][1] = resetEnd[i][1];
+					}
+					panel.repaint();
+					button.bool = 0;
+				}
+				pathNum = 1;
+			}
+	    }
+
+	    @Override
+	    public void mouseEntered(MouseEvent e) {}
+
+	    @Override
+	    public void mouseExited(MouseEvent e) {}
+
+	    @Override
+	    public void mousePressed(MouseEvent e) {}
+
+	    @Override
+	    public void mouseReleased(MouseEvent e) {}
 	}
 }

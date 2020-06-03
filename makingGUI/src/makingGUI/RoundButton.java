@@ -5,6 +5,7 @@ import java.awt.geom.*;
 import javax.swing.*;
 
 public class RoundButton extends JButton {
+	int bool = 1;
     public RoundButton(String label, Icon img) {
       super(label, img);
 
