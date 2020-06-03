@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
 
 public class MarkerClickEvent implements MouseListener{
 	private String[] database = new String[288];
+	private String[][] database2 = new String[288][4];
+	private String[][][] database3 = new String[288][4][4];
 	ImageIcon tayoimg = new ImageIcon("./img/tayo.jpg");
-	@Override
-    public void mouseClicked(MouseEvent e) {
-		MarkerButton button = (MarkerButton)e.getSource();
-		String tempStr = "";
+	
+	MarkerClickEvent(){
 		try {
 			File file = new File("./dataBase/BusTime.csv");
 			FileReader filereader = new FileReader(file);
@@ -27,6 +27,7 @@ public class MarkerClickEvent implements MouseListener{
 		    
 		    while((line = bufReader.readLine()) != null){
 		        database[i] = line;
+		        database2[i] = database[i].split(",");
 		        i++;
 		    }
 		    bufReader.close();
@@ -35,10 +36,45 @@ public class MarkerClickEvent implements MouseListener{
         }catch(IOException e2){
             System.out.println(e2);
         }
-		
-		System.out.println(button.getNum());
+	}
+	
+	@Override
+    public void mouseClicked(MouseEvent e) {
+		MarkerButton button = (MarkerButton)e.getSource();
+		String tempStr = "A노선   :   B노선\n";
+		int j;
 		for(int i = 1 + 24*button.getNum(); i < 24*button.getNum()+24; i++) {
-			tempStr += database[i];
+			database3[i][1] = database2[i][1].split("");
+			database3[i][3] = database2[i][3].split("");
+			if(database2[i][1].length() % 2 == 0) {
+				tempStr += database3[i][1][0];
+				tempStr += database3[i][1][1];
+				tempStr += ":";
+				tempStr += database3[i][1][2];
+				tempStr += database3[i][1][3];
+				tempStr += "        ";
+			}
+			else {
+				tempStr += "  ";
+				tempStr += database3[i][1][0];
+				tempStr += ":";
+				tempStr += database3[i][1][1];
+				tempStr += database3[i][1][2];
+				tempStr += "         ";
+			}
+			if(database2[i][3].length() % 2 == 0) {
+				tempStr += database3[i][3][0];
+				tempStr += database3[i][3][1];
+				tempStr += ":";
+				tempStr += database3[i][3][2];
+				tempStr += database3[i][3][3];
+			}
+			else {
+				tempStr += database3[i][3][0];
+				tempStr += ":";
+				tempStr += database3[i][3][1];
+				tempStr += database3[i][3][2];
+			}
 			tempStr += "\n";
 		}
 		JOptionPane.showMessageDialog(null, tempStr, "BusStopInfo", JOptionPane.PLAIN_MESSAGE, tayoimg);
