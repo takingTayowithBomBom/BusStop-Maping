@@ -150,7 +150,7 @@ public class Frame extends JFrame {
 			
 			for(k = 1; k < 24*12+24; k++) {
 				//System.out.println(database2[k][1] + Integer.toString(curtime));
-				if( Integer.parseInt(database2[k][1]) <= curtime) {
+				if(Integer.parseInt(database2[k][1]) == 848) {
 					break;
 				}
 			}
