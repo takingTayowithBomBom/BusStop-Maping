@@ -71,9 +71,16 @@ public class Frame extends JFrame {
 	};
 	
 	int [][] busLocation = {
+			/*
 			{320,125},{450,375},{500,410},{500,550},
 			{300,550},{200,550},{140,650},{110,550},{250,470},
 			{350,340},{423,280},{300,260}
+			*/
+			{320,95},{300,260},{423,280},{350,340},
+			{250,470},{110,550},{140,650},{200,550},
+			{300,550},{500,550},{500,410},{450,375}
+			
+			
 	};
 	public Frame() {
 		setTitle("TayoWithBomBom");
@@ -113,20 +120,24 @@ public class Frame extends JFrame {
 		TimePanel.setForeground(Color.black);
 		TimePanel.setBounds(30, 30, 150, 50);
 		panel.add(TimePanel, 16, 0);
-		
+		panel.add(ABus, 17, 0);
+		panel.add(BBus, 18, 0);
 		
 		setVisible(true);
 		JLabel timerLabel = new JLabel();
 		TimerThread th = new TimerThread(timerLabel);
 		th.start();
-		new BusAnimation();
+		JLabel timerLabel2 = new JLabel();
+		BusAnimation bth = new BusAnimation(timerLabel2);
+		bth.start();
 		setVisible(true);
 		
 	}
 	class BusAnimation extends Thread{
 		int i = 0;
-	    
-		public BusAnimation() {
+		private JLabel timerLabel2;
+		
+		public BusAnimation(JLabel timerLabel2) {
 			try {
 				File file = new File("./dataBase/BusTime.csv");
 				FileReader filereader = new FileReader(file);
@@ -144,33 +155,94 @@ public class Frame extends JFrame {
 	        }catch(IOException e2){
 	            System.out.println(e2);
 	        }
-			
-			int k = 0;
-			int curtime = new TimeManage().getTimeInt();
-			
-			for(k = 1; k < 24*11+23; k++) {
-				//System.out.println(database2[k][1] + Integer.toString(curtime));
-				if(k%24 == 0 )
-					continue;
-				if( Integer.parseInt(database2[k][1]) == curtime) {
-					break;
+			this.timerLabel2 = timerLabel2; 
+		}
+		
+		@Override 
+		public void run() { 
+			while(true) {
+
+				int k = 0;
+				int k2 = 0;
+				int curtime = new TimeManage().getTimeInt();
+				
+				for(k = 1; k < 24*11+23; k++) {
+					//System.out.println(database2[k][1] + Integer.toString(curtime));
+					if(k%24 == 0 )
+						continue;
+					if( Integer.parseInt(database2[k][1]) == curtime) {
+						break;
+					}
 				}
-			}
-			if(k == 24*11+23) {
-				ABus.setBorderPainted(false);
-				ABus.setBounds(0, 0, 30, 30);
-				panel.add(ABus, 17, 0);
-			}
-			else {
-				k = k / 24;
+				for(k2 = 1; k2 < 24*11+23; k2++) {
+					//System.out.println(database2[k][1] + Integer.toString(curtime));
+					if(k2%24 == 0 )
+						continue;
+					if( Integer.parseInt(database2[k2][1]) == curtime+1) {
+						break;
+					}
+				}
+				if(k2 == 24*11+23) {
+					k2 = 0;
+				}
+				if(k == 24*11+23) {
+					ABus.setBorderPainted(false);
+					ABus.setBounds(0, 0, 30, 30);
+				}
+				else {
+					k = k / 24;
+					k2 = k2 / 24;
+					//System.out.println(k);
+					ABus.setBorderPainted(false);
+					float sec = 60.000F;
+					float curLoc = (new TimeManage().getSecInt()) / sec;
+					System.out.println(curLoc);
+					ABus.setBounds(Math.round(busLocation[k][0] + (busLocation[k2][0] - busLocation[k][0])*curLoc),
+									Math.round((busLocation[k][1] + (busLocation[k2][1] - busLocation[k][1])*curLoc)), 30, 30);
+				}
 				//System.out.println(k);
-				ABus.setBorderPainted(false);
-				ABus.setBounds(busLocation[k][0], busLocation[k][1], 30, 30);
-				panel.add(ABus, 17, 0);
-			}
-			//System.out.println(k);
-			
-			
+				for(k = 1; k < 24*11+23; k++) {
+					//System.out.println(database2[k][1] + Integer.toString(curtime));
+					if(k%24 == 0 )
+						continue;
+					if( Integer.parseInt(database2[k][3]) == curtime) {
+						break;
+					}
+				}
+				for(k2 = 1; k2 < 24*11+23; k2++) {
+					//System.out.println(database2[k][1] + Integer.toString(curtime));
+					if(k2%24 == 0 )
+						continue;
+					if( Integer.parseInt(database2[k2][3]) == curtime + 1) {
+						break;
+					}
+				}
+				if(k2 == 24*11+23) {
+					k2 = 0;
+				}
+				if(k == 24*11+23) {
+					BBus.setBorderPainted(false);
+					BBus.setBounds(0, 0, 30, 30);
+				}
+				else {
+					k = k / 24;
+					k2 = k2 / 24;
+					//System.out.println(k);
+					BBus.setBorderPainted(false);
+					float sec = 60.000F;
+					float curLoc = (new TimeManage().getSecInt()) / sec;
+					System.out.println(curLoc);
+					BBus.setBounds(Math.round(busLocation[k][0] + (busLocation[k2][0] - busLocation[k][0])*curLoc),
+								Math.round((busLocation[k][1] + (busLocation[k2][1] - busLocation[k][1])*curLoc)), 30, 30);
+				}
+				panel.repaint();
+				try { 
+					Thread.sleep(1000); 
+				} 
+				catch(InterruptedException e) {
+					return; 
+				}
+			} 
 		}
 	}
 	
@@ -181,7 +253,8 @@ public class Frame extends JFrame {
 		public TimerThread(JLabel timerLabel) { 
 			this.timerLabel = timerLabel; 
 		}
-		@Override public void run() { 
+		@Override 
+		public void run() { 
 			while(true) {
 				TimePanel.setText(new TimeManage().getTime());
 				try { 

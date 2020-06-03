@@ -27,4 +27,10 @@ public class TimeManage {
 		tempInt = hour*100 + minute;
 		return tempInt;
 	}
+	
+	public int getSecInt() {
+		int tempInt = 0;
+		tempInt = second;
+		return tempInt;
+	}
 }
