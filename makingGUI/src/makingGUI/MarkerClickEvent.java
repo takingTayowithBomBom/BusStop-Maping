@@ -9,6 +9,9 @@ public class MarkerClickEvent implements MouseListener{
 	@Override
     public void mouseClicked(MouseEvent e) {
 		MarkerButton button = (MarkerButton)e.getSource();
+		if(button == RB1)
+			repaint();
+		else if(button == RB2)
 		JOptionPane.showMessageDialog(null, "mouseClicked" + button.getNum());
     }
 
