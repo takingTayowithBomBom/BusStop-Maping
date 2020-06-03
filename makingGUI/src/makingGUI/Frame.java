@@ -149,8 +149,7 @@ public class Frame extends JFrame {
 			int curtime = new TimeManage().getTimeInt();
 			
 			for(k = 1; k < 24*12+24; k++) {
-				//System.out.println(database2[k][1] + Integer.toString(curtime));
-				if(Integer.parseInt(database2[k][1]) == 848) {
+				if( Integer.parseInt(database2[k][1]) == curtime) {
 					break;
 				}
 			}
