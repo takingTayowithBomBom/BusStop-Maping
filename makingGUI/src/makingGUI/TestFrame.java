@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class TestFrame extends JFrame {
 	Mypanel panel = new Mypanel();
@@ -20,6 +21,9 @@ public class TestFrame extends JFrame {
 	
 	ImageIcon MarkerImg;
 	MarkerButton [] Markers = new MarkerButton[13];
+	ImageIcon img2 = new ImageIcon("./img/reverseclockwise2.png");
+	RoundButton RB = new RoundButton("A³ë¼±", img2);
+	
 	int [][] busLocation = {
 			{320,125},{450,375},{600,400},{500,410},{500,550},
 			{300,550},{200,550},{140,650},{110,550},{250,470},
@@ -47,6 +51,11 @@ public class TestFrame extends JFrame {
 			Markers[i].setBorderPainted(false); 
 			panel.add(Markers[i], i+2, 0);
 		}
+		
+		RB.setBounds(600, 90, 100, 30);
+		RB.setBorderPainted(false);
+		RB.addMouseListener(new MyButtonClickEvent());
+		panel.add(RB, 15, 0);
 		
 		setVisible(true);
 	}
