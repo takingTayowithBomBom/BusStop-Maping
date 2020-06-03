@@ -21,8 +21,10 @@ public class Frame extends JFrame {
 	
 	ImageIcon MarkerImg;
 	MarkerButton [] Markers = new MarkerButton[13];
+	
 	ImageIcon img2 = new ImageIcon("./img/reverseclockwise2.png");
 	RoundButton RB1 = new RoundButton("A노선", img2);
+	
 	ImageIcon img3 = new ImageIcon("./img/clockwise2.png");
 	RoundButton RB2 = new RoundButton("B노선", img3);
 	
@@ -58,9 +60,11 @@ public class Frame extends JFrame {
 		RB1.setBounds(600, 90, 100, 30);
 		RB1.setBorderPainted(false);
 		RB1.addMouseListener(new MyButtonClickEvent());
+		
 		RB2.setBounds(600, 124, 100, 30);
 		RB2.setBorderPainted(false);
 		RB2.addMouseListener(new MyButtonClickEvent());
+		
 		panel.add(RB1, 15, 0);
 		panel.add(RB2, 15, 0);
 		
