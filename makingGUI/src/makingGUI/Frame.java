@@ -23,7 +23,7 @@ public class Frame extends JFrame {
 	int pathNum = 0;
 	
 	ImageIcon MarkerImg;
-	MarkerButton [] Markers = new MarkerButton[13];
+	MarkerButton [] Markers = new MarkerButton[12];
 	ImageIcon img2 = new ImageIcon("./img/reverseclockwise2.png");
 	RoundButton RB1 = new RoundButton("A³ë¼±", img2);
 	ImageIcon img3 = new ImageIcon("./img/clockwise2.png");
@@ -55,7 +55,7 @@ public class Frame extends JFrame {
 	};
 	
 	int [][] busLocation = {
-			{320,125},{450,375},{600,400},{500,410},{500,550},
+			{320,125},{450,375},{500,410},{500,550},
 			{300,550},{200,550},{140,650},{110,550},{250,470},
 			{350,340},{423,280},{300,260}
 	};
@@ -72,7 +72,7 @@ public class Frame extends JFrame {
 		Imgbox.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 		panel.add(Imgbox, 1, 0);
 		MarkerImg = new ImageIcon("./img/C_busStop.png");
-		for(int i = 0; i < 13; i++) {
+		for(int i = 0; i < 12; i++) {
 			Markers[i] = new MarkerButton();
 			Markers[i].setIcon(MarkerImg);
 			Markers[i].setNum(i);

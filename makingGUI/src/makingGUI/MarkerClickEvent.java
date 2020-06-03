@@ -1,10 +1,5 @@
 package makingGUI;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.BufferedReader;
@@ -13,14 +8,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class MarkerClickEvent implements MouseListener{
-	private String[] database = new String[25];
+	private String[] database = new String[288];
+	ImageIcon tayoimg = new ImageIcon("./img/tayo.jpg");
 	@Override
     public void mouseClicked(MouseEvent e) {
 		MarkerButton button = (MarkerButton)e.getSource();
-		JOptionPane.showMessageDialog(null, "mouseClicked" + button.getNum());
+		String tempStr = "";
 		try {
 			File file = new File("./dataBase/BusTime.csv");
 			FileReader filereader = new FileReader(file);
@@ -38,9 +35,14 @@ public class MarkerClickEvent implements MouseListener{
         }catch(IOException e2){
             System.out.println(e2);
         }
-		for(int i = 0; i < database.length && database[i] != null; i++)
-			System.out.println(database[i]);
-    }
+		
+		System.out.println(button.getNum());
+		for(int i = 1 + 24*button.getNum(); i < 24*button.getNum()+24; i++) {
+			tempStr += database[i];
+			tempStr += "\n";
+		}
+		JOptionPane.showMessageDialog(null, tempStr, "BusStopInfo", JOptionPane.PLAIN_MESSAGE, tayoimg);
+	}
 
     @Override
     public void mouseEntered(MouseEvent e) {}
