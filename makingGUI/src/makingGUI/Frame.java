@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -106,8 +109,43 @@ public class Frame extends JFrame {
 		
 		JLabel ABus = new JLabel();
 		JLabel BBus = new JLabel();
+		BusAnimation Abus= new BusAnimation();
 		
 	}
+	class BusAnimation extends Thread{
+		private JLabel ABus;
+		private JLabel BBus;
+		private String[] database = new String[288];
+		private String[][] database2 = new String[288][4];
+		
+		File file = new File("./dataBase/BusTime.csv");
+		FileReader filereader = new FileReader(file);
+	    BufferedReader bufReader = new BufferedReader(filereader);
+	    String line = "";
+	    int k = 0;
+	    
+	    while((line = bufReader.readLine()) != null){
+	        database[k] = line;
+	        database2[k] = database[k].split(",");
+	        k++;
+	    }
+	    bufReader.close();
+	    
+		public void BusAnimation() {
+			int curTime = new TimeManage().getTimeInt();
+			
+		    
+			for(int i = 1; i < busLocation.length; i++) {
+				for(int j = 1; j < 24; j++) {
+					if(curTime == Integer.parseInt(database2[i][1]))
+						ABus.setBounds(busLocation[i][0], busLocation[i][1], 30, 30);
+					else if(curTime == Integer.parseInt(database2[i][3]))
+						BBus.setBounds(busLocation[i][0], busLocation[i][1], 30, 30);
+				}
+			}
+		}
+	}
+	
 
 	class TimerThread extends Thread { 
 		private JLabel timerLabel;
@@ -118,13 +156,12 @@ public class Frame extends JFrame {
 		@Override public void run() { 
 			while(true) {
 				TimePanel.setText(new TimeManage().getTime());
-				
 				try { 
 					Thread.sleep(1000); 
 				} 
 				catch(InterruptedException e) {
 					return; 
-				} 
+				}
 			} 
 		}
 	}
