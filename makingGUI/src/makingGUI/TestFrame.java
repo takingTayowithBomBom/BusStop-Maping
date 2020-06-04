@@ -18,9 +18,11 @@ public class TestFrame extends JFrame {
 	//Container cPane;
 	ImageIcon img;
 	JLabel Imgbox;
+	RoundButton TimePanel;
 	final int FRAME_WIDTH = 720;
 	final int FRAME_HEIGHT = 856;
 	int pathNum = 0;
+
 	
 	ImageIcon MarkerImg;
 	MarkerButton [] Markers = new MarkerButton[12];
@@ -66,7 +68,6 @@ public class TestFrame extends JFrame {
 		setContentPane(panel);
 		panel.setLayout(null);
 		
-		
 		img = new ImageIcon("./img/jejuMap.jpg");
 		Imgbox = new JLabel(img);
 		Imgbox.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
@@ -91,9 +92,37 @@ public class TestFrame extends JFrame {
 		panel.add(RB1, 15, 0);
 		panel.add(RB2, 15, 0);
 		
+		TimePanel = new RoundButton(new TimeManage().getTime());
+		TimePanel.setForeground(Color.black);
+		TimePanel.setBounds(30, 30, 150, 50);
+		panel.add(TimePanel, 16, 0);
+
 		setVisible(true);
+		JLabel timerLabel = new JLabel();
+		TimerThread th = new TimerThread(timerLabel);
+		th.start();
 	}
 
+	class TimerThread extends Thread { 
+		private JLabel timerLabel;
+		
+		public TimerThread(JLabel timerLabel) { 
+			this.timerLabel = timerLabel; 
+		}
+		@Override public void run() { 
+			while(true) {
+				TimePanel.setText(new TimeManage().getTime());
+				
+				try { 
+					Thread.sleep(1000); 
+				} 
+				catch(InterruptedException e) {
+					return; 
+				} 
+			} 
+		}
+	}
+	
 	class Mypanel extends JPanel{
 		float dash3[] = {10,3f};
 		
