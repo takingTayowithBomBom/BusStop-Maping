@@ -103,6 +103,10 @@ public class Frame extends JFrame {
 		JLabel timerLabel = new JLabel();
 		TimerThread th = new TimerThread(timerLabel);
 		th.start();
+		
+		JLabel ABus = new JLabel();
+		JLabel BBus = new JLabel();
+		
 	}
 
 	class TimerThread extends Thread { 
