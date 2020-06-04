@@ -6,7 +6,24 @@ import javax.swing.*;
 
 public class RoundButton extends JButton {
 	int bool = 1;
-    public RoundButton(String label, Icon img) {
+    Color cl = new Color(200,200,200);
+	public RoundButton(String label) {
+	      super(label);
+
+	//These statements enlarge the button so that it 
+	//becomes a circle rather than an oval.
+	      Dimension size = getPreferredSize();
+	      size.width = size.height = Math.max(size.width, 
+	        size.height);
+	      setPreferredSize(size);
+	      
+	//This call causes the JButton not to paint 
+	     // the background.
+	//This allows us to paint a round background.
+	      setContentAreaFilled(false);
+	    }
+	
+	public RoundButton(String label, Icon img) {
       super(label, img);
 
 //These statements enlarge the button so that it 
@@ -27,7 +44,7 @@ public class RoundButton extends JButton {
       if (getModel().isArmed()) {
 //You might want to make the highlight color 
      // a property of the RoundButton class.
-        g.setColor(new Color(200, 200, 200));
+        g.setColor(cl);
       } else {
         g.setColor(getBackground());
       }

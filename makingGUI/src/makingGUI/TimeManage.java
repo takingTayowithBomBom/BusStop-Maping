@@ -10,7 +10,7 @@ public class TimeManage {
 	
 	public TimeManage() {
 		Calendar time = Calendar.getInstance();
-		hour = time.get(Calendar.HOUR);
+		hour = time.get(Calendar.HOUR_OF_DAY);
 		minute = time.get(Calendar.MINUTE);
 		second = time.get(Calendar.SECOND);
 	}
@@ -21,5 +21,10 @@ public class TimeManage {
 				+ Integer.toString(second) + "√ ";
 		return tempStr;
 	}
-
+	
+	public int getTimeInt() {
+		int tempInt = 0;
+		tempInt = hour*100 + minute;
+		return tempInt;
+	}
 }

@@ -42,7 +42,7 @@ public class MarkerClickEvent implements MouseListener{
     public void mouseClicked(MouseEvent e) {
 		MarkerButton button = (MarkerButton)e.getSource();
 		String tempStr = "A노선   :   B노선\n";
-		int j;
+		//int curTime = new TimeManage().getTimeInt();
 		for(int i = 1 + 24*button.getNum(); i < 24*button.getNum()+24; i++) {
 			database3[i][1] = database2[i][1].split("");
 			database3[i][3] = database2[i][3].split("");
