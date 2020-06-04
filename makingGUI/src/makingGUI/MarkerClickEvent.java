@@ -52,7 +52,10 @@ public class MarkerClickEvent implements MouseListener{
 				tempStr += ":";
 				tempStr += database3[i][1][2];
 				tempStr += database3[i][1][3];
-				tempStr += "        ";
+				if(curTime > Integer.parseInt(database2[i][1])) 
+					tempStr += " 款青 辆丰!!     ";
+				else
+					tempStr += "        ";
 			}
 			else {
 				tempStr += "  ";
@@ -60,11 +63,10 @@ public class MarkerClickEvent implements MouseListener{
 				tempStr += ":";
 				tempStr += database3[i][1][1];
 				tempStr += database3[i][1][2];
-				tempStr += "         ";
-			}
-			
-			if(curTime > Integer.parseInt(database2[i][1])) {
-				tempStr += " 款青 辆丰!! ";
+				if(curTime > Integer.parseInt(database2[i][1])) 
+					tempStr += " 款青 辆丰!!     ";
+				else
+					tempStr += "         ";
 			}
 			
 			if(database2[i][3].length() % 2 == 0) {
@@ -80,9 +82,8 @@ public class MarkerClickEvent implements MouseListener{
 				tempStr += database3[i][3][1];
 				tempStr += database3[i][3][2];
 			}
-			if(curTime > Integer.parseInt(database2[i][3])) {
+			if(curTime > Integer.parseInt(database2[i][3]))
 				tempStr += " 款青 辆丰!! ";
-			}
 			tempStr += "\n";
 		}
 		JOptionPane.showMessageDialog(null, tempStr, "BusStopInfo", JOptionPane.PLAIN_MESSAGE, tayoimg);
