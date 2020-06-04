@@ -6,8 +6,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,6 +37,13 @@ public class Frame extends JFrame {
 	RoundButton RB2 = new RoundButton("B³ë¼±", img3);
 	ImageIcon Abus = new ImageIcon("./img/busred.png");
 	ImageIcon Bbus = new ImageIcon("./img/busblue.png");
+
+	JButton ABus = new JButton();
+	JButton BBus = new JButton();
+	
+	
+	String[] database = new String[288];
+	String[][] database2 = new String[288][4];
 	
 	int [][] resetStart = {
 			{335, 125}, {352, 303}, {451, 335}, {446, 386},
@@ -84,6 +97,9 @@ public class Frame extends JFrame {
 			panel.add(Markers[i], i+2, 0);
 		}
 		
+		ABus.setIcon(Abus);
+		BBus.setIcon(Bbus);
+		
 		RB1.setBounds(600, 90, 100, 30);
 		RB1.setBorderPainted(false);
 		RB1.addMouseListener(new MyButtonClickEvent());
@@ -97,12 +113,55 @@ public class Frame extends JFrame {
 		TimePanel.setForeground(Color.black);
 		TimePanel.setBounds(30, 30, 150, 50);
 		panel.add(TimePanel, 16, 0);
-
+		
+		
 		setVisible(true);
 		JLabel timerLabel = new JLabel();
 		TimerThread th = new TimerThread(timerLabel);
 		th.start();
+		new BusAnimation();
+		setVisible(true);
+		
 	}
+	class BusAnimation extends Thread{
+		int i = 0;
+	    
+		public BusAnimation() {
+			try {
+				File file = new File("./dataBase/BusTime.csv");
+				FileReader filereader = new FileReader(file);
+			    BufferedReader bufReader = new BufferedReader(filereader);
+			    String line = "";
+			    
+			    while((line = bufReader.readLine()) != null){
+			        database[i] = line;
+			        database2[i] = database[i].split(",");
+			        i++;
+			    }
+			    bufReader.close();
+			}catch(FileNotFoundException e2) {
+	            // TODO: handle exception
+	        }catch(IOException e2){
+	            System.out.println(e2);
+	        }
+			//System.out.println(database2[1][1]);
+			int k = 0;
+			int curtime = new TimeManage().getTimeInt();
+			
+			for(k = 1; k < 24*12+24; k++) {
+				//System.out.println(database2[k][1] + Integer.toString(curtime));
+				if( Integer.parseInt(database2[k][1]) <= curtime) {
+					break;
+				}
+			}
+			k /= 24;
+			ABus.setBorderPainted(false);
+			ABus.setBounds(busLocation[k][0], busLocation[k][1], 30, 30);
+			panel.add(ABus, 17, 0);
+			
+		}
+	}
+	
 
 	class TimerThread extends Thread { 
 		private JLabel timerLabel;
@@ -113,13 +172,12 @@ public class Frame extends JFrame {
 		@Override public void run() { 
 			while(true) {
 				TimePanel.setText(new TimeManage().getTime());
-				
 				try { 
 					Thread.sleep(1000); 
 				} 
 				catch(InterruptedException e) {
 					return; 
-				} 
+				}
 			} 
 		}
 	}
