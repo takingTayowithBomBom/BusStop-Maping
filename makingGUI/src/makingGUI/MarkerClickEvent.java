@@ -42,7 +42,7 @@ public class MarkerClickEvent implements MouseListener{
     public void mouseClicked(MouseEvent e) {
 		MarkerButton button = (MarkerButton)e.getSource();
 		String tempStr = "A노선   :   B노선\n";
-		//int curTime = new TimeManage().getTimeInt();
+		int curTime = new TimeManage().getTimeInt();
 		for(int i = 1 + 24*button.getNum(); i < 24*button.getNum()+24; i++) {
 			database3[i][1] = database2[i][1].split("");
 			database3[i][3] = database2[i][3].split("");
@@ -62,6 +62,11 @@ public class MarkerClickEvent implements MouseListener{
 				tempStr += database3[i][1][2];
 				tempStr += "         ";
 			}
+			
+			if(curTime > Integer.parseInt(database2[i][1])) {
+				tempStr += " 운행 종료!! ";
+			}
+			
 			if(database2[i][3].length() % 2 == 0) {
 				tempStr += database3[i][3][0];
 				tempStr += database3[i][3][1];
@@ -74,6 +79,9 @@ public class MarkerClickEvent implements MouseListener{
 				tempStr += ":";
 				tempStr += database3[i][3][1];
 				tempStr += database3[i][3][2];
+			}
+			if(curTime > Integer.parseInt(database2[i][3])) {
+				tempStr += " 운행 종료!! ";
 			}
 			tempStr += "\n";
 		}
