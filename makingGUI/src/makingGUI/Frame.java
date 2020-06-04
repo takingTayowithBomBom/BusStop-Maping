@@ -131,7 +131,7 @@ public class Frame extends JFrame {
 	    }
 	    bufReader.close();
 	    
-		public void BusAnimation() {
+		public BusAnimation() {
 			int curTime = new TimeManage().getTimeInt();
 			
 		    
