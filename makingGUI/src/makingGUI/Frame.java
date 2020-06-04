@@ -67,7 +67,6 @@ public class Frame extends JFrame {
 		setContentPane(panel);
 		panel.setLayout(null);
 		
-		
 		img = new ImageIcon("./img/jejuMap.jpg");
 		Imgbox = new JLabel(img);
 		Imgbox.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
@@ -94,10 +93,11 @@ public class Frame extends JFrame {
 		
 		TimeManage now = new TimeManage();
 		TimePanel = new JLabel(now.getTime());
+		TimePanel.setBounds(600, 90, 100, 30);
 		TimePanel.setOpaque(true);
 		TimePanel.setBackground(Color.YELLOW);
 		TimePanel.setForeground(Color.BLACK);
-		panel.add(TimePanel);
+		panel.add(TimePanel, 5, 0);
 		
 		setVisible(true);
 	}
