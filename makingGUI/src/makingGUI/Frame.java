@@ -82,7 +82,7 @@ public class Frame extends JFrame {
 			
 			
 	};
-	public Frame() {
+	public  Frame() {
 		setTitle("TayoWithBomBom");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
